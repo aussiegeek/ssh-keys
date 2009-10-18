@@ -16,6 +16,11 @@ describe "SshKeys" do
   it "shouldn't allow a key less than 64 characters" do
     lambda {Aussiegeek::SshKey.new('short')}.should raise_error(Aussiegeek::SshKey::InvalidKey)
   end
+
+  it "shoudn't allow a key that has extra fluff" do
+      lambda {Aussiegeek::SshKey.new('extrafluffssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAu9l5Vlc0g8QefXEhOZ8F0ma3Ea0STP0gGkq8MPsjNhtksB58YxyOfdQFF1jdSAb1F8OfzQOsnTxepN0LEBKhEbUPxD2FBcHUvKUcl0q75rSwdlbkd+lx4FRARIf3siQwVatfHI6XWYSX3nM/hu2/LXq8oxRxYLdmHaq2khzBW9ZpF0i1FcaC77rxSXbW6FjGyebtGnsKEn8uTFxXhlEQBFb+DKw31KzAOfPNXzMLuXA5kyMGqIGq5vdp82js71enyvsHIYzuYddS84tRVXDgKR8nOXtCpzB9SmV+bjKj3H67cl3D5lEjWLpw+IpwCjqSCC26yBHJgXBXUPBnbnt+EQ== alan@Nibbler.local')}.should raise_error(Aussiegeek::SshKey::InvalidKey)
+
+  end
   
   context "get key info (rsa)" do
     before do
