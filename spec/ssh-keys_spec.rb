@@ -1,6 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe "SshKeys" do
+  context "check key validity" do
+    it "should fail when its just not a key" do
+      lambda {Aussiegeek::SshKey.new('not a key')}.should raise_error(Aussiegeek::SshKey::InvalidKey)
+    end
+  end
+  
   context "get key info (rsa)" do
     before do
       @ssh_key = Aussiegeek::SshKey.new('ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAu9l5Vlc0g8QefXEhOZ8F0ma3Ea0STP0gGkq8MPsjNhtksB58YxyOfdQFF1jdSAb1F8OfzQOsnTxepN0LEBKhEbUPxD2FBcHUvKUcl0q75rSwdlbkd+lx4FRARIf3siQwVatfHI6XWYSX3nM/hu2/LXq8oxRxYLdmHaq2khzBW9ZpF0i1FcaC77rxSXbW6FjGyebtGnsKEn8uTFxXhlEQBFb+DKw31KzAOfPNXzMLuXA5kyMGqIGq5vdp82js71enyvsHIYzuYddS84tRVXDgKR8nOXtCpzB9SmV+bjKj3H67cl3D5lEjWLpw+IpwCjqSCC26yBHJgXBXUPBnbnt+EQ== alan@Nibbler.local')
