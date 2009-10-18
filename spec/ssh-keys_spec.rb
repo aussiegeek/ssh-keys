@@ -6,6 +6,16 @@ describe "SshKeys" do
       lambda {Aussiegeek::SshKey.new('not a key')}.should raise_error(Aussiegeek::SshKey::InvalidKey)
     end
   end
+
+  it "shouldn't allow a key with a newline in it" do
+    key="ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAu9l5Vlc0g8QefXEhOZ8F0ma3
+    Ea0STP0gGkq8MPsjNhtksB58YxyOfdQFF1jdSAb1F8OfzQOsnTxepN0LEBKhEbUPxD2FBcHUvKUcl0q75rSwdlbkd+lx4FRARIf3siQwVatfHI6XWYSX3nM/hu2/LXq8oxRxYLdmHaq2khzBW9ZpF0i1FcaC77rxSXbW6FjGyebtGnsKEn8uTFxXhlEQBFb+DKw31KzAOfPNXzMLuXA5kyMGqIGq5vdp82js71enyvsHIYzuYddS84tRVXDgKR8nOXtCpzB9SmV+bjKj3H67cl3D5lEjWLpw+IpwCjqSCC26yBHJgXBXUPBnbnt+EQ== alan@Nibbler.local"
+    lambda {Aussiegeek::SshKey.new(key)}.should raise_error(Aussiegeek::SshKey::InvalidKey)
+  end
+
+  it "shouldn't allow a key less than 64 characters" do
+    lambda {Aussiegeek::SshKey.new('short')}.should raise_error(Aussiegeek::SshKey::InvalidKey)
+  end
   
   context "get key info (rsa)" do
     before do

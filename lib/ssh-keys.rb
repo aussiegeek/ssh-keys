@@ -6,6 +6,14 @@ module Aussiegeek
     attr_reader :key_type, :key_length, :fingerprint, :comment
 
     def initialize(ssh_key)
+      if ssh_key.match /\n/
+        raise InvalidKey
+      end
+
+      if ssh_key.length < 64
+        raise InvalidKey
+      end
+      
       tmpfile = Tempfile.new('ruby_ssh-key' + Time.now.to_i.to_s)
       tmpfile << ssh_key
       tmpfile.close
