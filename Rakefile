@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "ssh-keys"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Manage SSH Keys from Ruby}
+    gem.description = %Q{Read SSH Keys, check they are valid, read fingerprints}
     gem.email = "alan@aussiegeek.net"
     gem.homepage = "http://github.com/aussiegeek/ssh-keys"
     gem.authors = ["Alan Harper"]
@@ -21,7 +21,7 @@ end
 require 'spec/rake/spectask'
 Spec::Rake::SpecTask.new(:spec) do |spec|
   spec.libs << 'lib' << 'spec'
-  spec.spec_files = FileList['spec/**/*_spec.rb']
+  spec.spec_files = FileList['spec/**/*_spec.rb', 'spec/fixtures/*']
 end
 
 Spec::Rake::SpecTask.new(:rcov) do |spec|

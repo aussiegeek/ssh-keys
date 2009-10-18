@@ -1,6 +1,8 @@
 = ssh-keys
 
-Description goes here.
+Process SSH Keys from Ruby
+
+Pass the key string to Aussieggeek::SshKey#new, and it will return an object with its details, or raise Aussiegeek::SshKey::InvalidKey if its invalid.
 
 == Note on Patches/Pull Requests
  
